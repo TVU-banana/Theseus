@@ -1,0 +1,31 @@
+basics:
+  name: "Theseus"
+  title: "Software Engineer"
+  email: "theseus@example.com"
+  location: "Shanghai, China"
+  summary: "Focused on building clear, maintainable, content-first web products."
+
+experience:
+  - company: "Example Tech"
+    role: "Frontend Engineer"
+    start: "2024-01"
+    end: "Present"
+    summary: "Built internal tools and documentation sites with React and TypeScript."
+  - company: "Open Studio"
+    role: "Software Engineer"
+    start: "2021-06"
+    end: "2023-12"
+    summary: "Worked on performance and readability improvements across web projects."
+
+education:
+  - school: "Example University"
+    degree: "B.Eng. in Computer Science"
+    start: "2017"
+    end: "2021"
+
+skills:
+  - TypeScript
+  - Next.js
+  - React
+  - CSS
+  - Technical Writing
