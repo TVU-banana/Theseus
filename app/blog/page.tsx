@@ -28,12 +28,11 @@ export default async function BlogPage() {
                 <Link href={`/blog/${entry.slug}`}>{entry.title}</Link>
               </h2>
               <p className="entry-meta">{formatDate(entry.date)}</p>
-              {entry.summary ? <p>{entry.summary}</p> : null}
               {entry.tags.length > 0 ? (
                 <ul className="tag-list">
                   {entry.tags.map((tag) => (
                     <li className="tag" key={tag}>
-                      {tag}
+                      <Link href={`/blog/tags/${encodeURIComponent(tag)}`}>{tag}</Link>
                     </li>
                   ))}
                 </ul>

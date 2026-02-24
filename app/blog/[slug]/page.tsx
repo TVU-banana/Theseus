@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import MDXContent from "@/components/MDXContent";
 import { formatDate } from "@/lib/date";
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   return {
     title: entry.title,
-    description: entry.summary || "Blog post",
+    description: `Blog post: ${entry.title}`,
   };
 }
 
@@ -43,12 +44,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <header className="stack-sm">
         <h1>{entry.title}</h1>
         <p className="entry-meta">{formatDate(entry.date)}</p>
-        {entry.summary ? <p className="muted">{entry.summary}</p> : null}
         {entry.tags.length > 0 ? (
           <ul className="tag-list">
             {entry.tags.map((tag) => (
               <li className="tag" key={tag}>
-                {tag}
+                <Link href={`/blog/tags/${encodeURIComponent(tag)}`}>{tag}</Link>
               </li>
             ))}
           </ul>

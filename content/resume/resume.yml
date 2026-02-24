@@ -1,31 +1,57 @@
 basics:
-  name: "Theseus"
-  title: "Software Engineer"
-  email: "theseus@example.com"
-  location: "Shanghai, China"
-  summary: "Focused on building clear, maintainable, content-first web products."
+  name: "DK"
+  title: "太原理工大学软件学院 · 软件工程本科在读"
+  email: "17735573832 · dukang1769@163.com"
+  location: "GitHub: https://github.com/TVU-banana"
+  summary: "聚焦 AI 工程化、RAG 系统与多模态应用落地，兼具前后端开发与项目组织管理经验。"
 
 experience:
-  - company: "Example Tech"
-    role: "Frontend Engineer"
+  - company: "太原理工大学百度飞桨领航团 / TYUT创新学社"
+    role: "团长 / 社长"
+    start: "2022-09"
+    end: "至今"
+    summary: "主导组建创新学社并完成章程与组织架构设计；吸纳首批成员 200+；设计标准化活动模板（读书会/技术分享会/每周小组汇报/学习马拉松等）；组织校级技术主题讲座 3 场，累计参与人数超 800 人次。"
+
+  - company: "太原理工大学软件学院科学与技术协会 / 创新实验室 AI 组"
+    role: "主席 / 负责人"
+    start: "2023-01"
+    end: "至今"
+    summary: "牵头构建文档管理系统；举办“AI Day”校园宣讲活动，联合百度 AI 生态部开展技术分享，覆盖师生 500+ 人。"
+
+  - company: "2024 年大学生创新创业项目（省级立项）"
+    role: "项目成员（RAG 智能助教与作业诚信平台）"
     start: "2024-01"
-    end: "Present"
-    summary: "Built internal tools and documentation sites with React and TypeScript."
-  - company: "Open Studio"
-    role: "Software Engineer"
-    start: "2021-06"
-    end: "2023-12"
-    summary: "Worked on performance and readability improvements across web projects."
+    end: "2024-12"
+    summary: "通过 Scrapy 爬取公开教学资料构建向量数据库；基于 PyPDF2 + jieba 完成文本清洗与切片；整合 ERNIE4.0 与向量数据库实现课程文档检索与问答；参与需求分析与原型设计，使用 Python + FAISS 完成检索模块开发。"
+
+  - company: "VideoReader-AKS（多模态视频分析引擎）"
+    role: "核心开发成员"
+    start: "2024-01"
+    end: "2024-12"
+    summary: "使用 AKS 动态抽帧，在保留关键语义前提下压缩 90%+ 冗余数据；集成 Qwen3-VL Visual Grounding，实现自然语言驱动的视频目标检索与时空定位；构建自动化分析流水线，建立日志审计与异常捕获机制。"
+
+  - company: "某能源技术开发有限公司"
+    role: "项目负责人（新能源平台）"
+    start: "2024-05"
+    end: "2024-12"
+    summary: "编制项目里程碑与时间表，持续跟踪任务进度并验收交付；推动平台落地前台机型展示与商务对接功能，后台实现机型运行监控与数据管理。"
+
+  - company: "竞赛与获奖"
+    role: "团队成员"
+    start: "2023-01"
+    end: "2024-12"
+    summary: "获 2023 第五届全球校园人工智能算法菁英大赛全国二等奖；获 2023-2024 华为 ICT 大赛中国区创新赛全国三等奖；项目采用 TCN + BiLSTM + 注意力机制，具备 PC/移动端/企业大屏多端落地能力，并聚焦清洁能源场景。"
 
 education:
-  - school: "Example University"
-    degree: "B.Eng. in Computer Science"
-    start: "2017"
-    end: "2021"
+  - school: "太原理工大学 软件学院"
+    degree: "软件工程本科（CET-4: 544；CET-6: 465）"
+    start: "2022-09"
+    end: "2026-07"
 
 skills:
-  - TypeScript
-  - Next.js
-  - React
-  - CSS
-  - Technical Writing
+  - "前端：HTML / CSS / TypeScript（可读写并修改前端代码）"
+  - "后端：Python、Django REST Framework"
+  - "编程语言：C / C++ / Java"
+  - "数据库：MySQL（设计与查询优化）"
+  - "算法：PyTorch（训练与推理）、NumPy、Pandas、Seaborn"
+  - "研究兴趣：人工智能、自然语言处理、多模态、计算机视觉"

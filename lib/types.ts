@@ -4,7 +4,6 @@ export type EntryFrontmatter = {
   title: string;
   date: string;
   tags: string[];
-  summary: string;
   draft: boolean;
 };
 

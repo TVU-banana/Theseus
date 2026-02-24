@@ -9,10 +9,25 @@ const COLLECTION_DIR: Record<Collection, string> = {
   notes: "notes",
 };
 
-const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-
 function toSlug(fileName: string): string {
   return fileName.replace(/\.(md|mdx)$/i, "");
+}
+
+function isSafeSlug(slug: string): boolean {
+  if (!slug.trim()) {
+    return false;
+  }
+
+  // Prevent path traversal and path separator injection while allowing Unicode slugs.
+  if (slug.includes("/") || slug.includes("\\") || slug.includes("\0")) {
+    return false;
+  }
+
+  if (slug === "." || slug === ".." || slug.includes("..")) {
+    return false;
+  }
+
+  return true;
 }
 
 function toDate(value: unknown): string {
@@ -53,7 +68,6 @@ function normalizeFrontmatter(
     title: typeof frontmatter.title === "string" && frontmatter.title.trim() ? frontmatter.title : slug,
     date: toDate(frontmatter.date),
     tags: toStringArray(frontmatter.tags),
-    summary: typeof frontmatter.summary === "string" ? frontmatter.summary : "",
     draft: Boolean(frontmatter.draft),
   };
 }
@@ -122,7 +136,7 @@ export async function getEntryBySlug(
   collection: Collection,
   slug: string,
 ): Promise<ContentEntry | null> {
-  if (!SLUG_PATTERN.test(slug)) {
+  if (!isSafeSlug(slug)) {
     return null;
   }
 

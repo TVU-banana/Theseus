@@ -23,7 +23,6 @@ export default function HomePage() {
   return (
     <section className="stack">
       <header className="stack-sm">
-        <h1>{siteConfig.name}</h1>
         <p>{siteConfig.intro}</p>
       </header>
 

@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: NoteDetailPageProps): Promise
 
   return {
     title: entry.title,
-    description: entry.summary || "Note detail",
+    description: `Note: ${entry.title}`,
   };
 }
 
@@ -43,7 +43,6 @@ export default async function NoteDetailPage({ params }: NoteDetailPageProps) {
       <header className="stack-sm">
         <h1>{entry.title}</h1>
         <p className="entry-meta">{formatDate(entry.date)}</p>
-        {entry.summary ? <p className="muted">{entry.summary}</p> : null}
         {entry.tags.length > 0 ? (
           <ul className="tag-list">
             {entry.tags.map((tag) => (

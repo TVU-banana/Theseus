@@ -28,7 +28,6 @@ export default async function NotesPage() {
                 <Link href={`/notes/${entry.slug}`}>{entry.title}</Link>
               </h2>
               <p className="entry-meta">{formatDate(entry.date)}</p>
-              {entry.summary ? <p>{entry.summary}</p> : null}
               {entry.tags.length > 0 ? (
                 <ul className="tag-list">
                   {entry.tags.map((tag) => (
