@@ -1,7 +1,9 @@
 ---
 title: "test"
-date: "2026-02-26"
+date: "2026-02-22"
 tags: ["Journal"]
 ---
 
-just for test
+```python
+print("hello")
+```

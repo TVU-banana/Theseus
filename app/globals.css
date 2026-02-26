@@ -301,6 +301,11 @@ samp {
   margin-top: 1rem;
 }
 
+.prose figure[data-rehype-pretty-code-figure] {
+  margin: 0;
+  width: 100%;
+}
+
 .prose ul,
 .prose ol {
   padding-left: 1.2rem;
@@ -320,6 +325,74 @@ samp {
   border-radius: 0.3rem;
   padding: 0.1rem 0.32rem;
   font-size: 0.93em;
+}
+
+.prose .code-block {
+  position: relative;
+  width: 100%;
+}
+
+.prose .code-block-copy {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.9rem;
+  z-index: 1;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+}
+
+.prose .code-block-copy:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.prose .code-block pre {
+  padding-top: 0.9rem;
+  padding-right: 5.4rem;
+  width: 100%;
+}
+
+.prose .code-block pre code {
+  display: block;
+  counter-reset: code-line;
+}
+
+.prose .code-block pre code [data-line] {
+  display: block;
+  position: relative;
+  padding-left: 1.8rem;
+}
+
+.prose .code-block pre code [data-line]::before {
+  counter-increment: code-line;
+  content: counter(code-line);
+  position: absolute;
+  left: 0;
+  width: 1.3rem;
+  text-align: right;
+  color: var(--muted);
+  opacity: 0.72;
+  user-select: none;
+}
+
+.prose .code-block pre code [data-line]:empty::after {
+  content: " ";
+}
+
+:root[data-theme="light"] .prose .code-block span[style*="--shiki-light"] {
+  color: var(--shiki-light) !important;
+  background-color: var(--shiki-light-bg) !important;
+}
+
+:root[data-theme="dark"] .prose .code-block span[style*="--shiki-dark"] {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
 }
 
 .callout {

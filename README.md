@@ -1,43 +1,107 @@
-﻿# 极简风个人网站（Next.js + TypeScript）
+﻿# Theseus - 极简个人网站（Next.js + TypeScript）
 
-一个仅包含 **Blog / Notes / Resume** 的静态内容站点。
+Theseus 是一个基于本地文件驱动的个人站点模板，包含 3 个核心模块：`Blog`、`Notes`、`Resume`。
 
-## 1. 本地启动
+- 无数据库
+- 无后端 API 依赖
+- 无登录系统
+- 内容即文件（`content/`）
 
-### 使用 pnpm
+## 1. 技术栈
+
+- Framework: `Next.js 16` (App Router)
+- Language: `TypeScript`
+- Content Rendering: `next-mdx-remote` + MDX
+- Content Source: 本地 Markdown/MDX + YAML
+- Package Manager: 推荐 `pnpm`
+
+## 2. 本地部署前置条件
+
+### 2.1 必备软件
+
+1. `Node.js`（建议 20 LTS 或更高）
+2. `pnpm`（建议 9 或更高）
+3. `Git`
+
+检查版本：
+
+```bash
+node -v
+pnpm -v
+git --version
+```
+
+### 2.2 获取项目代码
+
+```bash
+git clone <your-repo-url>
+cd Theseus
+```
+
+如果你已经在本地打开本项目，直接进入下一步即可。
+
+## 3. 3 分钟本地启动
+
+### 3.1 安装依赖
 
 ```bash
 pnpm install
+```
+
+### 3.2 启动开发环境
+
+```bash
 pnpm dev
 ```
 
-浏览器访问：`http://localhost:3000`
+默认地址：`http://localhost:3000`
 
-### npm 等价命令
+### 3.3 验证是否启动成功
 
-```bash
-npm install
-npm run dev
-```
+打开浏览器访问首页后，检查：
 
-## 2. 构建与生产运行
+1. 顶部导航存在 `Blog / Notes / Resume`
+2. 能进入 `Blog`、`Notes` 列表页
+3. `Resume` 页可加载 `public/resume/resume.pdf`（若文件存在）
+
+## 4. 生产构建与运行
+
+### 4.1 构建
 
 ```bash
 pnpm build
+```
+
+### 4.2 生产模式启动
+
+```bash
 pnpm start
 ```
 
-## 3. 内容写作方式
+## 5. 代码质量检查
 
-本项目无后端、无数据库、无登录系统，所有内容都来自本地文件。
+```bash
+pnpm lint
+pnpm typecheck
+```
 
-### 3.0 你应该改哪里（直接回答）
+## 6. 项目目录说明
 
-- Blog 正文：`content/blog/*.mdx`
-- Notes 正文：`content/notes/*.mdx`
-- Resume 内容：`content/resume/resume.yml`
+```text
+app/                 # 路由与页面（App Router）
+components/          # 可复用组件（包含 MDX 渲染组件）
+content/
+  blog/              # 博客正文（.md/.mdx）
+  notes/             # 笔记正文（.md/.mdx）
+  resume/resume.yml  # 简历结构化数据
+public/resume/       # 简历 PDF 静态文件
+lib/                 # 内容读取、日期格式化、站点配置等
+scripts/import-md.mjs# Markdown 导入脚本
+```
 
-### 3.1 新增 Blog 文章
+## 7. 如何写内容
+
+### 7.1 新增 Blog 文章
 
 路径：`content/blog/<slug>.mdx`
 
@@ -52,7 +116,7 @@ draft: false
 正文内容（MDX）
 ```
 
-### 3.2 新增 Notes 笔记
+### 7.2 新增 Notes 笔记
 
 路径：`content/notes/<slug>.mdx`
 
@@ -67,11 +131,7 @@ draft: false
 正文内容（MDX）
 ```
 
-### 3.3 新增 Project（预留说明）
-
-当前版本未启用 Projects 页面。若你后续要扩展，可按同一 frontmatter 规范在 `content/projects/*.mdx` 新增内容，再补对应路由。
-
-### 3.4 Frontmatter 约定
+### 7.3 Frontmatter 约定
 
 ```md
 ---
@@ -83,12 +143,13 @@ draft: false
 ```
 
 规则：
-- 列表按 `date` 倒序。
-- `draft: true` 的内容不会出现在列表或详情页。
 
-### 3.5 用本地 MD 编辑器（Obsidian/Typora）直接导入
+1. 列表按 `date` 倒序展示
+2. `draft: true` 不会出现在列表和详情页
 
-你可以在任意目录先写好 `.md`，再一条命令导入到博客：
+## 8. 使用导入脚本快速导入 Markdown
+
+导入到 Blog：
 
 ```bash
 pnpm import:md --file "<你的md文件路径>" --to blog
@@ -102,13 +163,13 @@ pnpm import:md --file "<你的md文件路径>" --to notes
 
 常用参数：
 
-- 指定 slug：
+1. 指定 slug
 
 ```bash
 pnpm import:md --file "<path>" --to blog --slug my-post
 ```
 
-- 覆盖同名文件：
+2. 覆盖同名文件
 
 ```bash
 pnpm import:md --file "<path>" --to blog --force
@@ -116,31 +177,40 @@ pnpm import:md --file "<path>" --to blog --force
 
 说明：
 
-- 支持 `--to posts`（会自动映射到 `blog`，兼容习惯叫法）。
-- 会自动读取源 Markdown frontmatter；缺失字段会自动补齐。
-- 导入结果写入 `content/blog/*.mdx` 或 `content/notes/*.mdx`。
-- 如果源文件名是中文（或其他非 ASCII），会自动生成可用 slug（例如 `blog-k8x2m1`）。
+- 支持 `--to posts`（自动映射到 `blog`）
+- 自动读取源 Markdown frontmatter，缺失字段会补齐
+- 输出到 `content/blog/*.mdx` 或 `content/notes/*.mdx`
 
-### 3.6 简历内容
+## 9. Resume 配置
 
-路径：`content/resume/resume.yml`
+1. 结构化内容文件：`content/resume/resume.yml`
+2. PDF 文件路径：`public/resume/resume.pdf`
+3. 修改后刷新 `/resume` 页面即可查看
 
-修改 YAML 后刷新 `/resume` 即可看到更新。
+## 10. 常见问题（FAQ）
 
-## 4. MDX 能力
+### 10.1 `pnpm dev` 启动失败
 
-支持标题、段落、列表、代码块，以及自定义组件 `Callout`：
+先执行：
 
-```mdx
-<Callout type="info" title="提示标题">
-  这里是内容
-</Callout>
+```bash
+pnpm install
 ```
 
-`type` 可选：`info | warning | success`
+再重试 `pnpm dev`。
 
-## 5. 主题与布局设置
+### 10.2 3000 端口被占用
 
-- 太阳/月亮图标：切换白天/暗夜模式。
-- 齿轮图标：调整页面宽度（Narrow / Standard / Wide）。
-- 两项设置都会持久化到 `localStorage`。
+使用新端口启动：
+
+```bash
+pnpm dev -- --port 3001
+```
+
+### 10.3 `resume.pdf` 不显示
+
+确认文件真实路径是：`public/resume/resume.pdf`。
+
+### 10.4 Windows 下中文显示乱码
+
+建议统一使用 UTF-8 编码保存 Markdown/MDX/YAML 文件。
